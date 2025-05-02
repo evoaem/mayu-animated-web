@@ -7,7 +7,7 @@ const Hero = () => {
     <section id="home" className="min-h-screen flex flex-col items-center justify-center px-4 relative">
       <div className="max-w-4xl mx-auto text-center z-10">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
-          <span className="text-white">HI, I'M </span>
+          <span className="text-white">I AM </span>
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-purple to-light-purple animate-glow">
             MAYU
           </span>

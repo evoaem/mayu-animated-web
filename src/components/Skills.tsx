@@ -1,6 +1,6 @@
 
 import { useEffect, useRef } from 'react';
-import { Code, Server, Database, Globe, React as ReactIcon, Tailwind, TypeScript, Node, Linux, Docker } from 'lucide-react';
+import { Code, Server, Database, Globe, Laptop, Terminal, FileCode, Cpu, Box, Cloud } from 'lucide-react';
 
 interface Skill {
   name: string;
@@ -132,7 +132,7 @@ const Skills = () => {
               
               <div className="bg-dark-purple/50 border border-primary-purple/20 rounded-lg p-6 hover:border-primary-purple/60 transition-all">
                 <div className="w-12 h-12 flex items-center justify-center mb-4 bg-primary-purple/20 rounded-lg text-primary-purple">
-                  <ReactIcon />
+                  <Laptop />
                 </div>
                 <h4 className="text-lg font-medium text-white mb-2">Web Development</h4>
                 <p className="text-gray-400 text-sm">Creating responsive, modern websites with React, Tailwind CSS, and TypeScript.</p>
@@ -156,7 +156,7 @@ const Skills = () => {
               
               <div className="bg-dark-purple/50 border border-primary-purple/20 rounded-lg p-6 hover:border-primary-purple/60 transition-all">
                 <div className="w-12 h-12 flex items-center justify-center mb-4 bg-primary-purple/20 rounded-lg text-primary-purple">
-                  <Node />
+                  <Terminal />
                 </div>
                 <h4 className="text-lg font-medium text-white mb-2">Backend Solutions</h4>
                 <p className="text-gray-400 text-sm">Node.js and Firebase backend development for web applications.</p>

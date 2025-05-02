@@ -61,18 +61,18 @@ const About = () => {
             
             <div className="flex flex-wrap gap-4 pt-4">
               <div className="bg-dark-purple/50 border border-primary-purple/20 rounded-lg px-4 py-3 hover:border-primary-purple/60 transition-all">
-                <span className="text-primary-purple font-medium">3+</span>
-                <p className="text-gray-400 text-sm">Years Experience</p>
+                <span className="text-primary-purple font-medium">Experience</span>
+                <p className="text-gray-400 text-sm">Creative Developer</p>
               </div>
               
               <div className="bg-dark-purple/50 border border-primary-purple/20 rounded-lg px-4 py-3 hover:border-primary-purple/60 transition-all">
-                <span className="text-primary-purple font-medium">20+</span>
-                <p className="text-gray-400 text-sm">Projects Completed</p>
+                <span className="text-primary-purple font-medium">Projects</span>
+                <p className="text-gray-400 text-sm">Various Web & Minecraft</p>
               </div>
               
               <div className="bg-dark-purple/50 border border-primary-purple/20 rounded-lg px-4 py-3 hover:border-primary-purple/60 transition-all">
-                <span className="text-primary-purple font-medium">15+</span>
-                <p className="text-gray-400 text-sm">Happy Clients</p>
+                <span className="text-primary-purple font-medium">Focus</span>
+                <p className="text-gray-400 text-sm">User Experience</p>
               </div>
             </div>
           </div>
@@ -90,11 +90,6 @@ const About = () => {
                     <div className="space-y-2">
                       <p className="text-gray-300 text-sm font-medium">Email</p>
                       <p className="text-white">mayu@hexra.cloud</p>
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <p className="text-gray-300 text-sm font-medium">Date of Birth</p>
-                      <p className="text-white">May 12, 1994</p>
                     </div>
                   </div>
                   
