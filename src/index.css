@@ -41,7 +41,7 @@
   }
 
   body {
-    @apply bg-dark-purple text-white overflow-x-hidden;
+    @apply bg-black text-white overflow-x-hidden;
   }
 
   /* Custom scrollbar */
@@ -70,6 +70,7 @@
   height: 100%;
   z-index: -1;
   overflow: hidden;
+  background-color: black;
 }
 
 .nav-link {
@@ -111,4 +112,18 @@ section {
   --vivid-purple: #8B5CF6;
   --sky-blue: #33C3F0;
   --bright-blue: #0FA0CE;
+}
+
+/* Animation for title glow effect */
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(155, 135, 245, 0.8), 0 0 15px rgba(155, 135, 245, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(155, 135, 245, 1), 0 0 30px rgba(155, 135, 245, 0.8);
+  }
+}
+
+.animate-glow {
+  animation: glow 2s infinite;
 }

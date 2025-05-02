@@ -1,18 +1,17 @@
 
 import { useEffect, useRef } from 'react';
 
-interface Particle {
+interface Point {
   x: number;
   y: number;
-  size: number;
-  speedX: number;
-  speedY: number;
-  color: string;
+  vx: number;
+  vy: number;
+  connected: boolean;
 }
 
 const ParticleBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const particles = useRef<Particle[]>([]);
+  const points = useRef<Point[]>([]);
   const mousePosition = useRef({ x: 0, y: 0 });
   const animationFrameId = useRef<number | null>(null);
 
@@ -28,7 +27,7 @@ const ParticleBackground = () => {
       if (canvas) {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        initParticles();
+        initPoints();
       }
     };
 
@@ -40,106 +39,109 @@ const ParticleBackground = () => {
     window.addEventListener('resize', handleResize);
     window.addEventListener('mousemove', handleMouseMove);
     
-    // Initialize particles
-    const initParticles = () => {
-      particles.current = [];
-      const particleCount = Math.min(window.innerWidth * 0.05, 150); // responsive count with cap
+    // Initialize points
+    const initPoints = () => {
+      points.current = [];
+      // Calculate number of points based on screen size
+      const numPoints = Math.min(150, Math.floor(window.innerWidth * window.innerHeight / 8000));
       
-      for (let i = 0; i < particleCount; i++) {
-        particles.current.push({
+      for (let i = 0; i < numPoints; i++) {
+        points.current.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          size: Math.random() * 2 + 0.5,
-          speedX: (Math.random() - 0.5) * 0.5,
-          speedY: (Math.random() - 0.5) * 0.5,
-          color: getRandomColor()
+          vx: (Math.random() - 0.5) * 0.8,
+          vy: (Math.random() - 0.5) * 0.8,
+          connected: false
         });
       }
     };
     
-    const getRandomColor = () => {
-      const colors = ['#9b87f5', '#7E69AB', '#D6BCFA', '#0FA0CE'];
-      return colors[Math.floor(Math.random() * colors.length)];
-    };
-
     // Animation loop
-    const drawParticles = () => {
+    const drawNetwork = () => {
       if (!canvas || !ctx) return;
       
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Draw and update particles
-      particles.current.forEach((particle, index) => {
-        // Update positions
-        particle.x += particle.speedX;
-        particle.y += particle.speedY;
-        
-        // Wrap around screen
-        if (particle.x > canvas.width) particle.x = 0;
-        if (particle.x < 0) particle.x = canvas.width;
-        if (particle.y > canvas.height) particle.y = 0;
-        if (particle.y < 0) particle.y = canvas.height;
-        
-        // Draw particle
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = particle.color;
-        ctx.fill();
-        
-        // Check distance with other particles to draw connections
-        for (let j = index + 1; j < particles.current.length; j++) {
-          const dx = particle.x - particles.current[j].x;
-          const dy = particle.y - particles.current[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          // Draw connections if particles are close enough
-          const maxDistance = 100;
-          if (distance < maxDistance) {
-            // Calculate opacity based on distance
-            const opacity = 1 - (distance / maxDistance);
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(155, 135, 245, ${opacity * 0.5})`;
-            ctx.lineWidth = 0.5;
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(particles.current[j].x, particles.current[j].y);
-            ctx.stroke();
-          }
-        }
-        
-        // Interact with mouse
-        const dx = mousePosition.current.x - particle.x;
-        const dy = mousePosition.current.y - particle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        const maxDistance = 100;
-        
-        if (distance < maxDistance) {
-          const forceDirectionX = dx / distance;
-          const forceDirectionY = dy / distance;
-          const force = (maxDistance - distance) / maxDistance;
-          
-          particle.speedX += forceDirectionX * force * 0.02;
-          particle.speedY += forceDirectionY * force * 0.02;
-          
-          // Limit speed
-          const maxSpeed = 2;
-          const speed = Math.sqrt(particle.speedX * particle.speedX + particle.speedY * particle.speedY);
-          if (speed > maxSpeed) {
-            particle.speedX = (particle.speedX / speed) * maxSpeed;
-            particle.speedY = (particle.speedY / speed) * maxSpeed;
-          }
-        }
-        
-        // Apply friction to gradually slow particles
-        particle.speedX *= 0.98;
-        particle.speedY *= 0.98;
+      // Reset connection status
+      points.current.forEach(point => {
+        point.connected = false;
       });
       
-      animationFrameId.current = requestAnimationFrame(drawParticles);
+      // Move points
+      points.current.forEach(point => {
+        point.x += point.vx;
+        point.y += point.vy;
+        
+        // Bounce off edges
+        if (point.x < 0 || point.x > canvas.width) {
+          point.vx = -point.vx;
+        }
+        
+        if (point.y < 0 || point.y > canvas.height) {
+          point.vy = -point.vy;
+        }
+      });
+      
+      // Draw connections first (so they're underneath the points)
+      for (let i = 0; i < points.current.length; i++) {
+        const point = points.current[i];
+        
+        // Find closest points to connect
+        for (let j = i + 1; j < points.current.length; j++) {
+          const otherPoint = points.current[j];
+          const dx = point.x - otherPoint.x;
+          const dy = point.y - otherPoint.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          // Connect points if they're close enough
+          const connectionDistance = canvas.width / 8;
+          if (distance < connectionDistance) {
+            // Set opacity based on distance (closer = more opaque)
+            const opacity = (1 - distance / connectionDistance) * 0.4;
+            ctx.beginPath();
+            ctx.moveTo(point.x, point.y);
+            ctx.lineTo(otherPoint.x, otherPoint.y);
+            ctx.strokeStyle = `rgba(123, 97, 255, ${opacity})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+            
+            point.connected = true;
+            otherPoint.connected = true;
+          }
+        }
+      }
+      
+      // Now draw the points
+      points.current.forEach(point => {
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, 1.5, 0, Math.PI * 2);
+        
+        // Color based on connection state
+        ctx.fillStyle = point.connected ? 'rgba(147, 112, 219, 0.8)' : 'rgba(80, 60, 190, 0.4)';
+        ctx.fill();
+        
+        // Interaction with mouse
+        const dx = mousePosition.current.x - point.x;
+        const dy = mousePosition.current.y - point.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const maxDist = 150;
+        
+        if (dist < maxDist) {
+          ctx.beginPath();
+          ctx.moveTo(point.x, point.y);
+          ctx.lineTo(mousePosition.current.x, mousePosition.current.y);
+          const opacity = (1 - dist / maxDist) * 0.5;
+          ctx.strokeStyle = `rgba(147, 112, 219, ${opacity})`;
+          ctx.stroke();
+        }
+      });
+      
+      animationFrameId.current = requestAnimationFrame(drawNetwork);
     };
     
     // Start the animation
     handleResize();
-    drawParticles();
+    drawNetwork();
     
     // Clean up
     return () => {

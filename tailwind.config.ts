@@ -51,6 +51,7 @@ const config: Config = {
         'vivid-purple': '#8B5CF6',
         'sky-blue': '#33C3F0',
         'bright-blue': '#0FA0CE',
+        'black': '#000000',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -65,6 +66,20 @@ const config: Config = {
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
+        },
+      },
+      animation: {
+        'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'bounce': 'bounce 1s infinite',
+      },
+      keyframes: {
+        pulse: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.8' },
+        },
+        bounce: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
         },
       },
     },
