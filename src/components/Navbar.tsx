@@ -29,7 +29,7 @@ const Navbar = () => {
       const scrollY = window.pageYOffset;
       
       sections.forEach((current) => {
-        const sectionHeight = current.offsetHeight;
+        const sectionHeight = (current as HTMLElement).offsetHeight;
         const sectionTop = (current as HTMLElement).offsetTop - 100;
         const sectionId = current.getAttribute('id') || '';
         
