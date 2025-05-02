@@ -125,13 +125,6 @@ const Projects = () => {
                 <p className={`text-gray-300 text-sm mb-4 transform transition-all duration-300 ${activeProject === project.id ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                   {project.description}
                 </p>
-                
-                <a 
-                  href={project.link}
-                  className={`inline-flex items-center text-primary-purple hover:text-white transition-colors transform transition-all duration-300 ${activeProject === project.id ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
-                >
-                  View Project <ArrowRight className="ml-1 h-4 w-4" />
-                </a>
               </div>
             </div>
           ))}
@@ -150,3 +143,4 @@ const Projects = () => {
 };
 
 export default Projects;
+
