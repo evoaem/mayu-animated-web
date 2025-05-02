@@ -1,5 +1,6 @@
 
 import { useEffect, useRef } from 'react';
+import { Code, Server, Database, Globe, React as ReactIcon, Tailwind, TypeScript, Node, Linux, Docker } from 'lucide-react';
 
 interface Skill {
   name: string;
@@ -7,14 +8,18 @@ interface Skill {
 }
 
 const skillsData: Skill[] = [
-  { name: "HTML/CSS", percentage: 95 },
-  { name: "JavaScript", percentage: 90 },
+  { name: "HTML/CSS", percentage: 90 },
+  { name: "JavaScript", percentage: 85 },
   { name: "React", percentage: 85 },
   { name: "TypeScript", percentage: 80 },
   { name: "Node.js", percentage: 75 },
-  { name: "UI/UX Design", percentage: 85 },
   { name: "Tailwind CSS", percentage: 90 },
-  { name: "Three.js", percentage: 70 },
+  { name: "Java", percentage: 85 },
+  { name: "Skript", percentage: 95 },
+  { name: "Server Management", percentage: 88 },
+  { name: "Plugin Development", percentage: 82 },
+  { name: "Mod Creation", percentage: 78 },
+  { name: "Firebase", percentage: 80 },
 ];
 
 const Skills = () => {
@@ -68,71 +73,101 @@ const Skills = () => {
           <div className="h-1 w-20 mx-auto bg-gradient-to-r from-primary-purple to-light-purple rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 gap-12">
           <div>
-            <h3 className="text-2xl font-semibold mb-8 text-white">Technical Skills</h3>
+            <h3 className="text-2xl font-semibold mb-8 text-white text-center">Technical Skills</h3>
             
-            <div className="space-y-6">
-              {skillsData.map((skill, index) => (
-                <div key={skill.name} className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-white">{skill.name}</span>
-                    <span className="text-primary-purple">{skill.percentage}%</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-6">
+                <h4 className="text-xl font-semibold text-primary-purple mb-4">Minecraft Development</h4>
+                {skillsData.slice(6, 11).map((skill, index) => (
+                  <div key={skill.name} className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-white">{skill.name}</span>
+                      <span className="text-primary-purple">{skill.percentage}%</span>
+                    </div>
+                    
+                    <div className="h-2 bg-gray-700/30 rounded-full overflow-hidden">
+                      <div 
+                        ref={el => skillBarsRef.current[index + 6] = el}
+                        className="h-full bg-gradient-to-r from-primary-purple to-light-purple rounded-full w-0 opacity-0 transition-all duration-1000"
+                      ></div>
+                    </div>
                   </div>
-                  
-                  <div className="h-2 bg-gray-700/30 rounded-full overflow-hidden">
-                    <div 
-                      ref={el => skillBarsRef.current[index] = el}
-                      className="h-full bg-gradient-to-r from-primary-purple to-light-purple rounded-full w-0 opacity-0 transition-all duration-1000"
-                    ></div>
+                ))}
+              </div>
+              
+              <div className="space-y-6">
+                <h4 className="text-xl font-semibold text-primary-purple mb-4">Web Development</h4>
+                {skillsData.slice(0, 6).map((skill, index) => (
+                  <div key={skill.name} className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-white">{skill.name}</span>
+                      <span className="text-primary-purple">{skill.percentage}%</span>
+                    </div>
+                    
+                    <div className="h-2 bg-gray-700/30 rounded-full overflow-hidden">
+                      <div 
+                        ref={el => skillBarsRef.current[index] = el}
+                        className="h-full bg-gradient-to-r from-primary-purple to-light-purple rounded-full w-0 opacity-0 transition-all duration-1000"
+                      ></div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
           
-          <div>
-            <h3 className="text-2xl font-semibold mb-8 text-white">Services I Offer</h3>
+          <div className="grid grid-cols-1 gap-8">
+            <h3 className="text-2xl font-semibold mb-4 text-white text-center">Services I Offer</h3>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               <div className="bg-dark-purple/50 border border-primary-purple/20 rounded-lg p-6 hover:border-primary-purple/60 transition-all">
                 <div className="w-12 h-12 flex items-center justify-center mb-4 bg-primary-purple/20 rounded-lg text-primary-purple">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M16 18l6-6-6-6" /><path d="M8 6l-6 6 6 6" />
-                  </svg>
+                  <Code />
+                </div>
+                <h4 className="text-lg font-medium text-white mb-2">Minecraft Development</h4>
+                <p className="text-gray-400 text-sm">Custom plugin development, server configuration, and mod creation.</p>
+              </div>
+              
+              <div className="bg-dark-purple/50 border border-primary-purple/20 rounded-lg p-6 hover:border-primary-purple/60 transition-all">
+                <div className="w-12 h-12 flex items-center justify-center mb-4 bg-primary-purple/20 rounded-lg text-primary-purple">
+                  <ReactIcon />
                 </div>
                 <h4 className="text-lg font-medium text-white mb-2">Web Development</h4>
-                <p className="text-gray-400 text-sm">Creating responsive, modern websites with clean code and optimal performance.</p>
+                <p className="text-gray-400 text-sm">Creating responsive, modern websites with React, Tailwind CSS, and TypeScript.</p>
               </div>
               
               <div className="bg-dark-purple/50 border border-primary-purple/20 rounded-lg p-6 hover:border-primary-purple/60 transition-all">
                 <div className="w-12 h-12 flex items-center justify-center mb-4 bg-primary-purple/20 rounded-lg text-primary-purple">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10" /><path d="M8 14s1.5 2 4 2 4-2 4-2" /><line x1="9" y1="9" x2="9.01" y2="9" /><line x1="15" y1="9" x2="15.01" y2="9" />
-                  </svg>
+                  <Server />
                 </div>
-                <h4 className="text-lg font-medium text-white mb-2">UI/UX Design</h4>
-                <p className="text-gray-400 text-sm">Designing intuitive user interfaces and smooth user experiences.</p>
+                <h4 className="text-lg font-medium text-white mb-2">Hosting Solutions</h4>
+                <p className="text-gray-400 text-sm">VPS management, Pterodactyl setup, Linux administration, and Docker deployment.</p>
               </div>
               
               <div className="bg-dark-purple/50 border border-primary-purple/20 rounded-lg p-6 hover:border-primary-purple/60 transition-all">
                 <div className="w-12 h-12 flex items-center justify-center mb-4 bg-primary-purple/20 rounded-lg text-primary-purple">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 21a9 9 0 0 1 0-18C7 3 3 7 3 12s4 9 9 9Z" /><circle cx="12" cy="12" r="1" /><path d="m19 19-3.3-3.3" /><path d="M21 12h-4" /><path d="M12 21v-4" /><path d="m19 5-3.3 3.3" /><path d="M3 12h4" /><path d="M12 3v4" /><path d="m5 5 3.3 3.3" /><path d="m5 19 3.3-3.3" />
-                  </svg>
+                  <Database />
                 </div>
-                <h4 className="text-lg font-medium text-white mb-2">Interactive Experiences</h4>
-                <p className="text-gray-400 text-sm">Building animations and interactive elements for engaging web experiences.</p>
+                <h4 className="text-lg font-medium text-white mb-2">Database Design</h4>
+                <p className="text-gray-400 text-sm">Efficient database architecture for Minecraft plugins and web applications.</p>
               </div>
               
               <div className="bg-dark-purple/50 border border-primary-purple/20 rounded-lg p-6 hover:border-primary-purple/60 transition-all">
                 <div className="w-12 h-12 flex items-center justify-center mb-4 bg-primary-purple/20 rounded-lg text-primary-purple">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 20h9" /><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" /><path d="m15 5 3 3" />
-                  </svg>
+                  <Node />
                 </div>
-                <h4 className="text-lg font-medium text-white mb-2">Creative Coding</h4>
-                <p className="text-gray-400 text-sm">Exploring the intersection of code and creativity for unique digital solutions.</p>
+                <h4 className="text-lg font-medium text-white mb-2">Backend Solutions</h4>
+                <p className="text-gray-400 text-sm">Node.js and Firebase backend development for web applications.</p>
+              </div>
+              
+              <div className="bg-dark-purple/50 border border-primary-purple/20 rounded-lg p-6 hover:border-primary-purple/60 transition-all">
+                <div className="w-12 h-12 flex items-center justify-center mb-4 bg-primary-purple/20 rounded-lg text-primary-purple">
+                  <Globe />
+                </div>
+                <h4 className="text-lg font-medium text-white mb-2">CloudFlare Integration</h4>
+                <p className="text-gray-400 text-sm">Performance optimization and security with CloudFlare services.</p>
               </div>
             </div>
           </div>

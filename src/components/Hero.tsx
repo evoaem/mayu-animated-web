@@ -7,19 +7,19 @@ const Hero = () => {
     <section id="home" className="min-h-screen flex flex-col items-center justify-center px-4 relative">
       <div className="max-w-4xl mx-auto text-center z-10">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
-          <span className="text-white opacity-0 animate-fade-in-slow">HI, I'M </span>
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-purple to-light-purple animate-glow opacity-0 animate-fade-in-delayed">
+          <span className="text-white">HI, I'M </span>
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-purple to-light-purple animate-glow">
             MAYU
           </span>
         </h1>
         
-        <div className="h-1 w-24 mx-auto bg-gradient-to-r from-primary-purple to-light-purple rounded-full my-6 opacity-0 animate-fade-in-delayed"></div>
+        <div className="h-1 w-24 mx-auto bg-gradient-to-r from-primary-purple to-light-purple rounded-full my-6"></div>
         
-        <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto opacity-0 animate-fade-in-delayed-2">
+        <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
           Creative Developer & Design Enthusiast
         </p>
         
-        <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fade-in-delayed-2">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button asChild className="bg-primary-purple hover:bg-primary-purple/80 text-white px-6 py-6 rounded-md glow-on-hover">
             <a href="#projects">
               View Work <ArrowRight className="ml-2 h-4 w-4" />

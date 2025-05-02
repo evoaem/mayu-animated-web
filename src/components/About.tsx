@@ -89,7 +89,7 @@ const About = () => {
                     
                     <div className="space-y-2">
                       <p className="text-gray-300 text-sm font-medium">Email</p>
-                      <p className="text-white">hello@mayu.dev</p>
+                      <p className="text-white">mayu@hexra.cloud</p>
                     </div>
                     
                     <div className="space-y-2">
@@ -101,17 +101,12 @@ const About = () => {
                   <div className="space-y-4">
                     <div className="space-y-2">
                       <p className="text-gray-300 text-sm font-medium">Based in</p>
-                      <p className="text-white">Tokyo, Japan</p>
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <p className="text-gray-300 text-sm font-medium">Phone</p>
-                      <p className="text-white">+81 90 1234 5678</p>
+                      <p className="text-white">Bangalore, Karnataka, India</p>
                     </div>
                     
                     <div className="space-y-2">
                       <p className="text-gray-300 text-sm font-medium">Languages</p>
-                      <p className="text-white">English, Japanese</p>
+                      <p className="text-white">English, Hindi, Kannada</p>
                     </div>
                   </div>
                 </div>
