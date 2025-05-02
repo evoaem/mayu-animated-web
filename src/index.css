@@ -102,3 +102,13 @@ section {
 .section-visible {
   @apply opacity-100 transition-opacity duration-700;
 }
+
+/* Custom color variables for skill cards */
+:root {
+  --primary-purple: #9b87f5;
+  --dark-purple: #1A1F2C;
+  --light-purple: #D6BCFA;
+  --vivid-purple: #8B5CF6;
+  --sky-blue: #33C3F0;
+  --bright-blue: #0FA0CE;
+}
